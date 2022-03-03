@@ -1,3 +1,4 @@
+import rps.Rps;
 
 public class Main {
 
