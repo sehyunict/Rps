@@ -1,27 +1,25 @@
 package rps;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
+import rps.module.Manager;
 import rps.module.player.Cpu;
 import rps.module.player.Player;
 import rps.module.player.User;
 import rps.module.util.Console;
 
 public class Rps {
-
-	private List<Player> players;
+	
+	private Manager<Player> playerManager;
 	private Scanner scanner;
 	
 	public Rps() {
 		
 		this.scanner = new Scanner(System.in);
-		this.players = new ArrayList<>();
+		this.playerManager = new Manager<>();
 		
 		User user = new User( "사용자" );
-		this.players.add( user );
+		this.playerManager.add( user );
 		
 	}
 	
@@ -55,17 +53,16 @@ public class Rps {
 		
 		for( int i=0; i<cpuCount; ++i ) {
 			
-			this.players.add( new Cpu() );
+			this.playerManager.add( new Cpu() );
 			
 		}
-		
-		
 		
 	}
 	
 	public void run() {
 		
 		this.createCpus();
+		Console.manager( this.playerManager );
 		
 	}
 
